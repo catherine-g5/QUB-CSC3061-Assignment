@@ -3,7 +3,9 @@
 clearvars
 close all
 
-addpath('SVM-KM')
+addpath('SVM-KM');
+addpath('functions');
+addpath('dataset');
 %% training
 
 % Load the training images & labels
