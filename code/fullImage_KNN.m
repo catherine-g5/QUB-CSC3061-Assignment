@@ -22,4 +22,4 @@ for k = 1:numel(kValue)
     fprintf('KNN with N equal to %d \n', kValue(k));
     fprintf('Accuracy of KNN model: %.2f%%\n', 100*accuracy);
 end
-save reducedDimensionality_NN modelNN 
+save fullImage_NN modelNN 

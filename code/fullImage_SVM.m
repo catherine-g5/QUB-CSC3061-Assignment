@@ -3,6 +3,7 @@
 clearvars
 close all
 
+addpath('SVM-KM')
 %% training
 
 % Load the training images & labels
@@ -33,3 +34,5 @@ comparison = (labels==results);
 % Calculate accuracy of the model
 accuracy = sum(comparison) / length(comparison);
 fprintf('Accuracy of SVM model: %.2f%%\n', 100*accuracy);
+
+save fullImage_SVM modelSVM
