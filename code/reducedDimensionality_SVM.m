@@ -1,7 +1,7 @@
 clearvars
 close all
 
-addpath('SVM-KM');
+addpath('functions/SVM-KM');
 addpath('images');
 addpath('functions');
 addpath('dataset');
