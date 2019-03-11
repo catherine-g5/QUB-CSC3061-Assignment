@@ -24,5 +24,6 @@ for k = 1:numel(kValue)
     accuracy = sum(comparison) / length(results);
     fprintf('KNN with N equal to %d \n', kValue(k));
     fprintf('Accuracy of KNN model: %.2f%%\n', 100*accuracy);
+    [confusionMatrix, rates] = getConfusionMatrix(testLabels, results)
 end
 save fullImage_NN modelNN 

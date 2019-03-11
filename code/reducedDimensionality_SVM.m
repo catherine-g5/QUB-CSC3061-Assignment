@@ -24,5 +24,6 @@ comparison = (testLabels==results);
 
 accuracy = sum(comparison) / length(comparison);
 fprintf('Accuracy of SVM model: %.2f%%\n', 100*accuracy);
+[confusionMatrix, rates] = getConfusionMatrix(testLabels, results)
 
 save reducedDimensionality_SVM modelSVM 
