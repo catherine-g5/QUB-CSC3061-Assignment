@@ -20,3 +20,5 @@ comparison = (testLabels==results);
 
 accuracy = sum(comparison) / length(results);
 fprintf('Accuracy of KNN model: %.2f%%\n', 100*accuracy);
+
+save reducedDimensionality_NN modelNN 

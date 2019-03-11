@@ -21,3 +21,5 @@ comparison = (testLabels==results);
 
 accuracy = sum(comparison) / length(comparison);
 fprintf('Accuracy of SVM model: %.2f%%\n', 100*accuracy);
+
+save reducedDimensionality_SVM modelSVM 
