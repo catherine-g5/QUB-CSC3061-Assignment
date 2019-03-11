@@ -2,6 +2,8 @@ clearvars
 close all
 
 addpath('images');
+addpath('functions');
+addpath('dataset');
 kValue = [1, 3, 5, 10];
 
 [trainImages,trainLabels] = loadFaceImages('face_train.cdataset',1);

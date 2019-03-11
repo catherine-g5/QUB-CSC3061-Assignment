@@ -3,6 +3,8 @@ close all
 
 addpath('SVM-KM');
 addpath('images');
+addpath('functions');
+addpath('dataset');
 nDimensions = 15;
 
 [trainImages,trainLabels] = loadFaceImages('face_train.cdataset',1);
