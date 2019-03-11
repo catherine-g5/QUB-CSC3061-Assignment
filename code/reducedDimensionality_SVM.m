@@ -3,18 +3,19 @@ close all
 
 addpath('SVM-KM');
 addpath('images');
+nDimensions = 15;
 
 [trainImages,trainLabels] = loadFaceImages('face_train.cdataset',1);
-
-modelSVM = SVMTraining(trainImages, trainLabels);
+[eigenVectors, eigenvalues, meanX, TrainPCA] = PrincipalComponentAnalysis(trainImages, nDimensions);
+modelSVM = SVMTraining(TrainPCA, trainLabels);
 
 [testImages, testLabels] = loadFaceImages('face_test.cdataset',1);
+[eigenVectors, eigenvalues, meanX, TrainLDA] = PrincipalComponentAnalysis(testImages, nDimensions);
 
 results = zeros(size(testImages,1),1);
 
 for i=1:size(testImages,1)
-    test_image = testImages(i,:);
-    results(i) = SVMTesting(test_image,modelSVM);
+    results(i) = SVMTesting(TrainLDA(i,:),modelSVM);
 end
 
 comparison = (testLabels==results);

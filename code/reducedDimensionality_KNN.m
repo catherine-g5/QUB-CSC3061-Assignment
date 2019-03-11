@@ -3,17 +3,21 @@ close all
 
 addpath('images');
 kValue = [1, 3, 5, 10];
+nDimensions = 15;
 
 [trainImages,trainLabels] = loadFaceImages('face_train.cdataset',1);
-modelNN = KNNTraining(trainImages, trainLabels);
+[eigenVectors, eigenvalues, meanX, TrainPCA] = PrincipalComponentAnalysis(trainImages, nDimensions);
+
+modelNN = KNNTraining(TrainPCA, trainLabels);
 
 [testImages,testLabels] = loadFaceImages('face_test.cdataset',1);
+[eigenVectors, eigenvalues, meanX, TestPCA] = PrincipalComponentAnalysis(testImages, nDimensions);
+
 for k = 1:numel(kValue)
     results = zeros(size(testImages,1),1);
 
     for i=1:size(testImages,1)
-        test_image = testImages(i,:);
-        results(i) = KNNTesting(test_image,modelNN, kValue(k));
+        results(i) = KNNTesting(TestPCA(i,:),modelNN, kValue(k));
     end
 
     comparison = (testLabels==results);
