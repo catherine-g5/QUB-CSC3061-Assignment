@@ -9,8 +9,8 @@ end
 
 
 minimumValue = min(distance);
-minimumIndex = find(minimumValue==distance);
+minimumIndex = find(minimumValue==distance)
 
-prediction = modelNN.labels(minimumIndex)
+prediction = modelNN.labels(minimumIndex(1))
 end
 
