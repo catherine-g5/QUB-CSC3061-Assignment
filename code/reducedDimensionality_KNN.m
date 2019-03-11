@@ -13,7 +13,6 @@ modelNN = KNNTraining(trainImages, trainLabels);
 results = zeros(size(testImages,1),1);
 
 for i=1:size(testImages,1)
-    index = i
     test_image = testImages(i,:);
     results(i) = KNNTesting(test_image,modelNN, 1);
 end
