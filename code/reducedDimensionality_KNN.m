@@ -1,7 +1,6 @@
 clearvars
 close all
 
-addpath('SVM-KM');
 addpath('images');
 
 [trainImages,trainLabels] = loadFaceImages('face_train.cdataset',1);
