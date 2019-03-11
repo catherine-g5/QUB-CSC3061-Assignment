@@ -37,5 +37,6 @@ comparison = (labels==results);
 % Calculate accuracy of the model
 accuracy = sum(comparison) / length(comparison);
 fprintf('Accuracy of SVM model: %.2f%%\n', 100*accuracy);
+[confusionMatrix, rates] = getConfusionMatrix(testLabels, results)
 
 save fullImage_SVM modelSVM
