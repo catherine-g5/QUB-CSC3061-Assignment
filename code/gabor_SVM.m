@@ -17,10 +17,5 @@ results = zeros(numberOfImages,1);
 for i=1:numberOfImages
     thisImg = testGabor(i,:);
     results(i) = SVMTesting(thisImg,SVMmodel);
-    fprintf('Tested %.0f/%.0f\n',i,numberOfImages);
 end
-comparison = (testLabels==results);
-
-% Calculate accuracy of the model
-accuracy = sum(comparison) / length(comparison);
-fprintf('Accuracy of SVM model: %.2f%%\n', 100*accuracy);
+getAccuracy(testLabels, results);
