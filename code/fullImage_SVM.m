@@ -31,12 +31,6 @@ end
 
 %% evaluation
 
-% Compare given classification of each testing image to its true class
-comparison = (labels==results);
-
-% Calculate accuracy of the model
-accuracy = sum(comparison) / length(comparison);
-fprintf('Accuracy of SVM model: %.2f%%\n', 100*accuracy);
-[confusionMatrix, rates] = getConfusionMatrix(labels, results)
+getConfusionMatrix(labels, results)
 
 save fullImage_SVM modelSVM

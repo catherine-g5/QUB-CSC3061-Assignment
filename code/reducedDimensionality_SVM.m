@@ -20,10 +20,6 @@ for i=1:size(testImages,1)
     results(i) = SVMTesting(TrainLDA(i,:),modelSVM);
 end
 
-comparison = (testLabels==results);
-
-accuracy = sum(comparison) / length(comparison);
-fprintf('Accuracy of SVM model: %.2f%%\n', 100*accuracy);
-[confusionMatrix, rates] = getConfusionMatrix(testLabels, results)
+getConfusionMatrix(testLabels, results)
 
 save reducedDimensionality_SVM modelSVM 

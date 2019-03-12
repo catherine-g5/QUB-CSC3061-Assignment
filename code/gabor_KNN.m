@@ -23,6 +23,7 @@ for k = 1:numel(kValue)
     end
 
     fprintf('KNN with k=%d',kValue(k));
+    
     getConfusionMatrix(testLabels, results)
 end
 
