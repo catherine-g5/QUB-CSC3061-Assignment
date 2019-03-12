@@ -20,6 +20,6 @@ for i=1:size(testImages,1)
     results(i) = SVMTesting(TrainLDA(i,:),modelSVM);
 end
 
-getConfusionMatrix(testLabels, results)
+getConfusionMatrix(testLabels, results);
 
 save reducedDimensionality_SVM modelSVM 

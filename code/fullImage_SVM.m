@@ -31,6 +31,6 @@ end
 
 %% evaluation
 
-getConfusionMatrix(labels, results)
+getConfusionMatrix(labels, results);
 
 save fullImage_SVM modelSVM

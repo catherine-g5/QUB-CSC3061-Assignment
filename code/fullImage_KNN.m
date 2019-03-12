@@ -19,8 +19,9 @@ for k = 1:numel(kValue)
         test_image = testImages(i,:);
         results(i) = KNNTesting(test_image,modelNN, kValue(k));
     end
-
-    getConfusionMatrix(testLabels, results)
+    
+    fprintf('KNN with N equal to %d \n', kValue(k));
+    getConfusionMatrix(testLabels, results);
 end
 
 save fullImage_NN modelNN 

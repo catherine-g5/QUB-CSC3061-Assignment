@@ -24,7 +24,7 @@ for k = 1:numel(kValue)
     end
 
     fprintf('KNN with N equal to %d \n', kValue(k));
-    getConfusionMatrix(testLabels, results)
+    getConfusionMatrix(testLabels, results);
 end
 
 save reducedDimensionality_NN modelNN 

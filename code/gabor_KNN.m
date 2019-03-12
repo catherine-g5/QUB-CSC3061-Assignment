@@ -24,7 +24,7 @@ for k = 1:numel(kValue)
 
     fprintf('KNN with k=%d',kValue(k));
     
-    getConfusionMatrix(testLabels, results)
+    getConfusionMatrix(testLabels, results);
 end
 
 save gabor_NN NNmodel 

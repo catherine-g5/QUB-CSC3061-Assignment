@@ -24,5 +24,10 @@ rates.f1 = 2*TP / (2*TP + FN + FP);
 rates.falseAlarm = FP / (FP + TN);
 
 fprintf('Accuracy of model: %.2f%%\n', 100*accuracy);
+fprintf('Recall Rate of model: %d\n', rates.recall);
+fprintf('Precision Rate of model: %d\n', rates.precision);
+fprintf('Specifity Rate of model: %d\n', rates.specificity);
+fprintf('F1 Rate of model: %d\n', rates.f1);
+fprintf('False Alarm Rate of model: %d\n\n', rates.falseAlarm);
 end
 
