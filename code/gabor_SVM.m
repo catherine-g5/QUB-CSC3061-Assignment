@@ -19,3 +19,5 @@ for i=1:numberOfImages
     results(i) = SVMTesting(thisImg,SVMmodel);
 end
 getConfusionMatrix(testLabels, results)
+
+save gabor_SVM SVMmodel
