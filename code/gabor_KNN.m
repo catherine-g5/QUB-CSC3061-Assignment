@@ -23,5 +23,5 @@ for k = 1:numel(kValue)
     end
 
     fprintf('KNN with k=%d',kValue(k));
-    getAccuracy(testLabels, results);
+    getConfusionMatrix(testLabels, results)
 end
