@@ -2,6 +2,10 @@ clear all
 close all
 
 %% Training
+addpath('functions/SVM-KM');
+addpath('images');
+addpath('functions');
+addpath('dataset');
 sampling=1;
 [trainImages, trainLabels] = loadFaceImages('face_train.cdataset',sampling);
 trainHOG = getHOG(trainImages);

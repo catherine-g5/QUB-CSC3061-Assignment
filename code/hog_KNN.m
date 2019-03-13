@@ -2,6 +2,10 @@ clear all
 close all
 
 %% Training
+addpath('functions/SVM-KM');
+addpath('images');
+addpath('functions');
+addpath('dataset');
 sampling=1;
 kValue = [1, 3, 5, 10];
 [trainImages, trainLabels] = loadFaceImages('face_train.cdataset',sampling);
