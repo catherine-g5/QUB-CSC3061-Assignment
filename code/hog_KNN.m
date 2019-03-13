@@ -5,21 +5,22 @@ close all
 sampling=1;
 kValue = [1, 3, 5, 10];
 [trainImages, trainLabels] = loadFaceImages('face_train.cdataset',sampling);
-trainGabor = getGabor(trainImages);
-NNmodel = KNNTraining(trainGabor, trainLabels);
+trainHOG = getHOG(trainImages);
+NNmodel = KNNTraining(trainHOG, trainLabels);
 fprintf('Training done\n');
 
 %% Testing
 [testImages, testLabels] = loadFaceImages('face_test.cdataset',sampling);
-testGabor = getGabor(testImages);
-numberOfImages = size(testGabor,1);
+testHOG = getHOG(testImages);
+numberOfImages = size(testHOG,1);
 results = zeros(numberOfImages,1);
 
 for k = 1:numel(kValue)
     results = zeros(numberOfImages,1);
 
     for i=1:numberOfImages
-        results(i) = KNNTesting(testGabor(i,:), NNmodel, kValue(k));
+        thisImg = testHOG(i,:);
+        results(i) = KNNTesting(thisImg, NNmodel, kValue(k));
     end
 
     fprintf('KNN with k=%d\n',kValue(k));
@@ -27,4 +28,4 @@ for k = 1:numel(kValue)
     getConfusionMatrix(testLabels, results);
 end
 
-save gabor_KNN NNmodel 
+save hog_KNN NNmodel 
