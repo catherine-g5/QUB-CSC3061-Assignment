@@ -1,4 +1,4 @@
-function [boundingBoxes] = SVMDetector(model,image, windowSize)
+function [boundingBoxes] = GaborSVMDetector(model,image, windowSize)
     row = 1;
     col = 1;
     [maxCol, maxRow] = size(image);
@@ -18,7 +18,7 @@ function [boundingBoxes] = SVMDetector(model,image, windowSize)
         for x = row:maxRow-windowSize(1)
             po = [x, y, windowSize(1), windowSize(2)];
             img = imcrop(image, po); 
-            gab = hog_feature_vector(img);
+            gab = gabor_feature_vector(img);
             results(windowNumber) = SVMTesting(gab,model);
             boundingBox(windowNumber, 1) = x;
             boundingBox(windowNumber, 2) = y;
