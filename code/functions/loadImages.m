@@ -29,17 +29,13 @@ else
     for im=1:sampling:posTrain
         filename = cell2mat(faces(im));
         filename = sprintf('code/images/face/%s',filename);
-        label = 1;
-        trainLabels= [trainLabels; label];
-        trainImages= [trainImages; convertImage(filename)];
+        [trainImages, trainLabels] = convertImage(filename,1,trainImages, trainLabels);
     end
     
     for im=1:sampling:negTrain
         filename = cell2mat(nonFaces(im));
         filename = sprintf('code/images/non-face/%s',filename);
-        label = -1;
-        trainLabels= [trainLabels; label];
-        trainImages= [trainImages; convertImage(filename)];
+        [trainImages, trainLabels] = convertImage(filename,-1,trainImages, trainLabels);
     end
 
 %% Load testing images
@@ -50,17 +46,13 @@ else
     for im=posTrain+1:sampling:numel(faces)
         filename = cell2mat(faces(im));
         filename = sprintf('code/images/face/%s',filename);
-        label = 1;
-        testLabels= [testLabels; label];
-        testImages= [testImages; convertImage(filename)];
+        [testImages, testLabels] = convertImage(filename,1,testImages, testLabels);
     end
     
     for im=negTrain+1:sampling:numel(nonFaces)
         filename = cell2mat(nonFaces(im));
         filename = sprintf('code/images/non-face/%s',filename);
-        label = -1;
-        testLabels= [testLabels; label];
-        testImages= [testImages; convertImage(filename)];
+        [testImages, testLabels] = convertImage(filename,-1,testImages, testLabels);
     end
 end
 end
