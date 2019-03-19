@@ -13,6 +13,7 @@ function [boundingBoxes] = HOGSVMDetector(model,image, windowSize)
     results = zeros(windowMax,1);
     boundingBox = zeros(windowMax,2);
     windowNumber = 1;
+    pBar = textprogressbar(windowMax);
 
     for y = col:maxCol-windowSize(2)   
         for x = row:maxRow-windowSize(1)
@@ -23,6 +24,7 @@ function [boundingBoxes] = HOGSVMDetector(model,image, windowSize)
             boundingBox(windowNumber, 1) = x;
             boundingBox(windowNumber, 2) = y;
             windowNumber = windowNumber+1;
+            pBar(windowNumber)
         end
     end
 

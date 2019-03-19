@@ -31,10 +31,12 @@ for iNumber = 1:4
         rectangle('Position',[bBoxes(i, 1),bBoxes(i, 2),windowSize(1),windowSize(2)],'LineWidth',1, 'EdgeColor','r');
     end
     fprintf("Bounding Boxes drawn for image number %d\n", iNumber);
-    fprintf("Finished image number %d\n", iNumber);
     
     filename = strcat(prefix, int2str(iNumber), suffix);
     set (gcf, 'PaperPositionMode', 'manual','PaperPosition',[0, 0, 50, 30])
     print(figure(iNumber),filename,'-djpeg'); 
+    fprintf("Saved image number %d\n", iNumber);
+    
+    fprintf("Finished image number %d\n", iNumber);
 end
 
