@@ -25,7 +25,7 @@ modelSVM = SVMTraining(images, labels);
 results = zeros(size(images,1),1);
 
 for i=1:size(images,1)
-    test_image = images(i,:);
+    test_image = images(i,:)
     results(i) = SVMTesting(test_image,modelSVM);
 end
 
