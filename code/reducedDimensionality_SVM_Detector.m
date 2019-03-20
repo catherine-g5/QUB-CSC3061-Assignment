@@ -7,15 +7,16 @@ addpath('functions');
 addpath('functions/SVM-KM');
 addpath('functions/Detectors');
 
-load('gabor_SVM.mat'); % Model name is SVM Model
+load('reducedDimensionality_SVM.mat'); % Model name is SVM Model
 windowSize = [18, 27]; % Window Size is the size of the test set images
+nDimensions = 15;
 
 images{1} = imread('images/im1.jpg');
 images{2} = imread('images/im2.jpg');
 images{3} = imread('images/im3.jpg');
 images{4} = imread('images/im4.jpg');
 
-prefix = "results/gabor_SVM_im";
+prefix = "results/reducedDimensionality_SVM_im";
 suffix = ".jpg";
 
 for iNumber = 1:4
@@ -26,7 +27,7 @@ for iNumber = 1:4
 
     % Gets boundingboxes for the test image, this should indicate a face
     % detected
-    bBoxes = GaborSVMDetector(SVMmodel, thisImg, windowSize);
+    bBoxes = ReducedDimensionalitySVMDetector(modelSVM, thisImg, windowSize, nDimensions);
     fprintf("Bounding Boxes got for image number %d\n", iNumber);
     
     % Goes through all of the bounding boxes and displays them on the image

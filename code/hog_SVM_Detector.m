@@ -1,3 +1,6 @@
+clear
+close all
+
 % Imports
 addpath('functions');
 addpath('functions/SVM-KM');
