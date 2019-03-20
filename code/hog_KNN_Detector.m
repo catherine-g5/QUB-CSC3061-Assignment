@@ -6,7 +6,7 @@ addpath('functions');
 addpath('functions/SVM-KM');
 addpath('functions/Detectors');
 
-load('hog_SVM.mat'); % Model name is SVM Model
+load('hog_KNN.mat'); % Model name is  NNmodel
 windowSize = [18, 27]; % Window Size is the size of the test set images
 
 images{1} = imread('images/im1.jpg');
@@ -14,7 +14,7 @@ images{2} = imread('images/im2.jpg');
 images{3} = imread('images/im3.jpg');
 images{4} = imread('images/im4.jpg');
 
-prefix = "results/hog_SVM_im";
+prefix = "results/hog_KNN_im";
 suffix = ".jpg";
 
 for iNumber = 1:4
@@ -25,9 +25,9 @@ for iNumber = 1:4
 
     % Gets boundingboxes for the test image, this should indicate a face
     % detected
-    bBoxes = HOGSVMDetector(SVMmodel, thisImg, windowSize);
+    bBoxes = HOGKNNDetector(NNmodel, thisImg, windowSize, 7);
     fprintf("Bounding Boxes got for image number %d\n", iNumber);
-        
+    
     % Goes through all of the bounding boxes and displays them on the image
     for i = 1:size(bBoxes,1) 
         rectangle('Position',[bBoxes(i, 1),bBoxes(i, 2),windowSize(1),windowSize(2)],'LineWidth',1, 'EdgeColor','r');
