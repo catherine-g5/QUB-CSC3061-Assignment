@@ -36,6 +36,7 @@ function [nmsBoxes] = simpleNMS(boundingBoxes, threshold)
             % Works out the largest coordinates for the start of
 			% the bounding box and the smallest coordinates
 			% for the end of the bounding box
+            xx1 = max(x1(i), x1(j));
             yy1 = max(y1(i), y1(j));
             xx2 = min(x2(i), x2(j));
             yy2 = min(y2(i), y2(j));

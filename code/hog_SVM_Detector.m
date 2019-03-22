@@ -6,7 +6,7 @@ addpath('functions');
 addpath('functions/SVM-KM');
 addpath('functions/Detectors');
 
-load('hog_SVM.mat'); % Model name is SVM Model
+load('hog_SVM.mat'); % Model name is hogSVMModel
 windowSize = [18, 27]; % Window Size is the size of the test set images
 
 images{1} = imread('images/im1.jpg');
@@ -25,7 +25,7 @@ for iNumber = 1:4
 
     % Gets boundingboxes for the test image, this should indicate a face
     % detected
-    bBoxes = HOGSVMDetector(SVMmodel, thisImg, windowSize);
+    bBoxes = HOGSVMDetector(hogSVMModel, thisImg, windowSize);
     fprintf("Bounding Boxes got for image number %d\n", iNumber);
         
     bBoxes = simpleNMS(bBoxes, 0.1);

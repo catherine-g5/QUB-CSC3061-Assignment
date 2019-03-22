@@ -7,7 +7,7 @@ addpath('functions');
 addpath('functions/SVM-KM');
 addpath('functions/Detectors');
 
-load('gabor_SVM.mat'); % Model name is SVM Model
+load('gabor_SVM.mat'); % Model name is gaborSVMModel
 windowSize = [18, 27]; % Window Size is the size of the test set images
 
 images{1} = imread('images/im1.jpg');
@@ -26,7 +26,7 @@ for iNumber = 1:4
 
     % Gets boundingboxes for the test image, this should indicate a face
     % detected
-    bBoxes = GaborSVMDetector(SVMmodel, thisImg, windowSize);
+    bBoxes = GaborSVMDetector(gaborSVMModel, thisImg, windowSize);
     fprintf("Bounding Boxes got for image number %d\n", iNumber);
     
     bBoxes = simpleNMS(bBoxes, 0.1);

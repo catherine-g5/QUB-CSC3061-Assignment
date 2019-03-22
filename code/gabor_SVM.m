@@ -5,7 +5,7 @@ close all
 sampling=1;
 [trainImages, trainLabels] = loadFaceImages('face_train.cdataset',sampling);
 trainGabor = getGabor(trainImages);
-SVMmodel = SVMTraining(trainGabor, trainLabels);
+gaborSVMModel = SVMTraining(trainGabor, trainLabels);
 fprintf('Training done\n');
 
 %% Testing
@@ -16,8 +16,8 @@ results = zeros(numberOfImages,1);
 
 for i=1:numberOfImages
     thisImg = testGabor(i,:);
-    results(i) = SVMTesting(thisImg,SVMmodel);
+    results(i) = SVMTesting(thisImg,gaborSVMModel);
 end
 getConfusionMatrix(testLabels, results);
 
-save gabor_SVM SVMmodel
+save gabor_SVM gaborSVMModel

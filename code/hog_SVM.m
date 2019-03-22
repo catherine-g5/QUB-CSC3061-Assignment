@@ -9,7 +9,7 @@ addpath('dataset');
 sampling=1;
 [trainImages, trainLabels] = loadFaceImages('face_train.cdataset',sampling);
 trainHOG = getHOG(trainImages);
-SVMmodel = SVMTraining(trainHOG, trainLabels);
+hogSVMModel = SVMTraining(trainHOG, trainLabels);
 fprintf('Training done\n');
 
 %% Testing
@@ -20,8 +20,8 @@ results = zeros(numberOfImages,1);
 
 for i=1:numberOfImages
     thisImg = testHOG(i,:);
-    results(i) = SVMTesting(thisImg,SVMmodel);
+    results(i) = SVMTesting(thisImg,hogSVMModel);
 end
 getConfusionMatrix(testLabels, results);
 
-save hog_SVM SVMmodel
+save hog_SVM hogSVMModel

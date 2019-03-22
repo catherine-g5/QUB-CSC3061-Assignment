@@ -13,7 +13,7 @@ addpath('dataset');
 [images,labels] = loadFaceImages('face_train.cdataset',1);
 
 % Train the SVM model
-modelSVM = SVMTraining(images, labels);
+fullImageSVMModel = SVMTraining(images, labels);
 
 %% testing
 
@@ -26,11 +26,11 @@ results = zeros(size(images,1),1);
 
 for i=1:size(images,1)
     test_image = images(i,:)
-    results(i) = SVMTesting(test_image,modelSVM);
+    results(i) = SVMTesting(test_image,fullImageSVMModel);
 end
 
 %% evaluation
 
 getConfusionMatrix(labels, results);
 
-save fullImage_SVM modelSVM
+save fullImage_SVM fullImageSVMModel

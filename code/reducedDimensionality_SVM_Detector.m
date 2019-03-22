@@ -27,7 +27,7 @@ for iNumber = 1:4
 
     % Gets boundingboxes for the test image, this should indicate a face
     % detected
-    bBoxes = ReducedDimensionalitySVMDetector(modelSVM, thisImg, windowSize, nDimensions);
+    bBoxes = ReducedDimensionalitySVMDetector(reducedDimensionalitySVMModel, thisImg, windowSize, nDimensions);
     fprintf("Bounding Boxes got for image number %d\n", iNumber);
     
     bBoxes = simpleNMS(bBoxes, 0.1);
