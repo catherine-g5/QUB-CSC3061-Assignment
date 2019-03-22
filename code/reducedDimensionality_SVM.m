@@ -5,7 +5,7 @@ addpath('functions/SVM-KM');
 addpath('images');
 addpath('functions');
 addpath('dataset');
-nDimensions = 15;
+nDimensions = 18;
 
 [trainImages,trainLabels] = loadFaceImages('face_train.cdataset',1);
 [eigenVectors, eigenvalues, meanX, TrainPCA] = PrincipalComponentAnalysis(trainImages, nDimensions);

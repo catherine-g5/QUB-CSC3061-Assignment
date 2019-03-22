@@ -25,6 +25,8 @@ function [boundingBoxes] = ReducedDimensionalitySVMDetector(model,image, windowS
             results(windowNumber) = SVMTesting(TrainLDA,model);
             boundingBox(windowNumber, 1) = x;
             boundingBox(windowNumber, 2) = y;
+            boundingBox(windowNumber, 3) = x + windowSize(1);
+            boundingBox(windowNumber, 4) = y + windowSize(2);
             windowNumber = windowNumber+1;
             pBar(windowNumber)
         end

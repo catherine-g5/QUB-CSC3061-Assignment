@@ -9,7 +9,7 @@ addpath('functions/Detectors');
 
 load('reducedDimensionality_SVM.mat'); % Model name is SVM Model
 windowSize = [18, 27]; % Window Size is the size of the test set images
-nDimensions = 15;
+nDimensions = 18;
 
 images{1} = imread('images/im1.jpg');
 images{2} = imread('images/im2.jpg');
@@ -30,9 +30,11 @@ for iNumber = 1:4
     bBoxes = ReducedDimensionalitySVMDetector(modelSVM, thisImg, windowSize, nDimensions);
     fprintf("Bounding Boxes got for image number %d\n", iNumber);
     
+    bBoxes = simpleNMS(bBoxes, 0.1);
+    
     % Goes through all of the bounding boxes and displays them on the image
     for i = 1:size(bBoxes,1) 
-        rectangle('Position',[bBoxes(i, 1),bBoxes(i, 2),windowSize(1),windowSize(2)],'LineWidth',1, 'EdgeColor','r');
+        rectangle('Position',[bBoxes(i, 1),bBoxes(i, 2),bBoxes(i, 3) - bBoxes(i, 1),bBoxes(i, 4) - bBoxes(i, 2)],'LineWidth',1, 'EdgeColor','r');
     end
     fprintf("Bounding Boxes drawn for image number %d\n", iNumber);
     

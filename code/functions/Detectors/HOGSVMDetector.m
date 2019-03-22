@@ -11,7 +11,7 @@ function [boundingBoxes] = HOGSVMDetector(model,image, windowSize)
     end
 
     results = zeros(windowMax,1);
-    boundingBox = zeros(windowMax,2);
+    boundingBox = zeros(windowMax,4);
     windowNumber = 1;
     pBar = textprogressbar(windowMax);
 
@@ -23,6 +23,8 @@ function [boundingBoxes] = HOGSVMDetector(model,image, windowSize)
             results(windowNumber) = SVMTesting(gab,model);
             boundingBox(windowNumber, 1) = x;
             boundingBox(windowNumber, 2) = y;
+            boundingBox(windowNumber, 3) = x + windowSize(1);
+            boundingBox(windowNumber, 4) = y + windowSize(2);
             windowNumber = windowNumber+1;
             pBar(windowNumber)
         end

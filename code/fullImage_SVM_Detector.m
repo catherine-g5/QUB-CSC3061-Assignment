@@ -29,9 +29,11 @@ for iNumber = 1:4
     bBoxes = FullImageSVMDetector(modelSVM, thisImg, windowSize);
     fprintf("Bounding Boxes got for image number %d\n", iNumber);
     
+    bBoxes = simpleNMS(bBoxes, 0.1);
+    
     % Goes through all of the bounding boxes and displays them on the image
     for i = 1:size(bBoxes,1) 
-        rectangle('Position',[bBoxes(i, 1),bBoxes(i, 2),windowSize(1),windowSize(2)],'LineWidth',1, 'EdgeColor','r');
+        rectangle('Position',[bBoxes(i, 1),bBoxes(i, 2),bBoxes(i, 3) - bBoxes(i, 1),bBoxes(i, 4) - bBoxes(i, 2)],'LineWidth',1, 'EdgeColor','r');
     end
     fprintf("Bounding Boxes drawn for image number %d\n", iNumber);
     
