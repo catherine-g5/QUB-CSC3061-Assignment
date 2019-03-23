@@ -19,7 +19,7 @@ images{4} = imread('images/im4.jpg');
 prefix = "results/hog_gab_SVM_im";
 suffix = ".jpg";
 
-for iNumber = 1:5
+for iNumber = 1:4
     fprintf("Starting image number %d\n", iNumber);
     figure(iNumber);
     thisImg = cell2mat(images(iNumber));
@@ -38,7 +38,7 @@ for iNumber = 1:5
     
     % Goes through all of the bounding boxes and displays them on the image
     for i = 1:size(bBoxes,1) 
-        rectangle('Position',[bBoxes(i, 1),bBoxes(i, 2),bBoxes(i, 3) - bBoxes(i, 1),bBoxes(i, 4) - bBoxes(i, 2)],'LineWidth',1, 'EdgeColor','r');
+        rectangle('Position',[bBoxes(i, 1),bBoxes(i, 2),bBoxes(i, 3) - bBoxes(i, 1),bBoxes(i, 4) - bBoxes(i, 2)],'LineWidth',3, 'EdgeColor','g');
     end
     fprintf("Bounding Boxes drawn for image number %d\n", iNumber);
     
