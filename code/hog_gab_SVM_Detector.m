@@ -5,6 +5,7 @@ close all
 addpath('functions');
 addpath('functions/SVM-KM');
 addpath('functions/Detectors');
+addpath('dataset');
 
 load('gabor_SVM.mat'); % Model name is gaborSVMModel
 load('hog_SVM.mat'); % Model name is hogSVMModel
@@ -14,7 +15,6 @@ images{1} = imread('images/im1.jpg');
 images{2} = imread('images/im2.jpg');
 images{3} = imread('images/im3.jpg');
 images{4} = imread('images/im4.jpg');
-images{5} = imread('images/im1.jpg');
 
 prefix = "results/hog_gab_SVM_im";
 suffix = ".jpg";
@@ -23,6 +23,10 @@ for iNumber = 1:5
     fprintf("Starting image number %d\n", iNumber);
     figure(iNumber);
     thisImg = cell2mat(images(iNumber));
+    
+    % Performs contrast enhancement using matlabs adapthisteq function
+    thisImg = adapthisteq(thisImg);
+    
     imshow(thisImg); % Shows Image
 
     % Gets boundingboxes for the test image, this should indicate a face
