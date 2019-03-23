@@ -1,11 +1,12 @@
 function [boundingBoxes] = ReducedDimensionalitySVMDetector(model,image, windowSize, nDimensions)
     row = 1;
     col = 1;
+    steps = 5;
     [maxCol, maxRow] = size(image);
 
     windowMax = 1;
-    for y = col:3:maxCol-windowSize(2)   
-        for x = row:3:maxRow-windowSize(1)
+    for y = col:steps:maxCol-windowSize(2)   
+        for x = row:steps:maxRow-windowSize(1)
             windowMax = windowMax + 1;
         end
     end
@@ -13,14 +14,14 @@ function [boundingBoxes] = ReducedDimensionalitySVMDetector(model,image, windowS
     results = zeros(windowMax,1);
     boundingBox = zeros(windowMax,2);
     windowNumber = 1;
-    pBar = textprogressbar(windowMax*2);
+    %pBar = textprogressbar(windowMax*2);
     
     for y = col:3:maxCol-windowSize(2)   
         for x = row:3:maxRow-windowSize(1)
             po = [x, y, windowSize(1) - 1, windowSize(2) - 1];
             img{windowNumber} = imcrop(image, po);
             windowNumber = windowNumber+1;
-            pBar(windowNumber)
+            %pBar(windowNumber)
         end
     end
     
