@@ -9,7 +9,7 @@ addpath('functions/Detectors');
 
 load('reducedDimensionality_SVM.mat'); % Model name is SVM Model
 windowSize = [18, 27]; % Window Size is the size of the test set images
-nDimensions = 18;
+nDimensions = 15;
 
 images{1} = imread('images/im1.jpg');
 images{2} = imread('images/im2.jpg');

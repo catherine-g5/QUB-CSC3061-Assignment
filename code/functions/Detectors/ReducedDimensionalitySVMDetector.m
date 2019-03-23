@@ -4,34 +4,38 @@ function [boundingBoxes] = ReducedDimensionalitySVMDetector(model,image, windowS
     [maxCol, maxRow] = size(image);
 
     windowMax = 1;
-    for y = col:maxCol-windowSize(2)   
-        for x = row:maxRow-windowSize(1)
-            windowMax = windowMax+1;
+    for y = col:3:maxCol-windowSize(2)   
+        for x = row:3:maxRow-windowSize(1)
+            windowMax = windowMax + 1;
         end
     end
 
     results = zeros(windowMax,1);
     boundingBox = zeros(windowMax,2);
     windowNumber = 1;
-    pBar = textprogressbar(windowMax);
+    pBar = textprogressbar(windowMax*2);
     
-    for y = col:maxCol-windowSize(2)   
-        for x = row:maxRow-windowSize(1)
+    for y = col:3:maxCol-windowSize(2)   
+        for x = row:3:maxRow-windowSize(1)
             po = [x, y, windowSize(1) - 1, windowSize(2) - 1];
-            img = imcrop(image, po);
-            
-            [eigenVectors, eigenvalues, meanX, TrainLDA] = PrincipalComponentAnalysis(double(img), nDimensions);
-
-            results(windowNumber) = SVMTesting(TrainLDA,model);
-            boundingBox(windowNumber, 1) = x;
-            boundingBox(windowNumber, 2) = y;
-            boundingBox(windowNumber, 3) = x + windowSize(1);
-            boundingBox(windowNumber, 4) = y + windowSize(2);
+            img{windowNumber} = imcrop(image, po);
             windowNumber = windowNumber+1;
             pBar(windowNumber)
         end
     end
-
+    
+    img = cell2mat(img);
+    [eigenVectors, eigenvalues, meanX, TrainLDA] = PrincipalComponentAnalysis(double(img), nDimensions);
+     
+    for i = 1:windowMax-1
+        results(i) = SVMTesting(TrainLDA(i,:),model);
+        boundingBox(i, 1) = x;
+        boundingBox(i, 2) = y;
+        boundingBox(i, 3) = x + windowSize(1);
+        boundingBox(i, 4) = y + windowSize(2);
+        pBar(i + windowNumber)
+    end
+    
     boundingBoxes = boundingBox(results == 1, :);
 end
 

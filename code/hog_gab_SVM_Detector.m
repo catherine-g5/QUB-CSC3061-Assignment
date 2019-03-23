@@ -14,11 +14,12 @@ images{1} = imread('images/im1.jpg');
 images{2} = imread('images/im2.jpg');
 images{3} = imread('images/im3.jpg');
 images{4} = imread('images/im4.jpg');
+images{5} = imread('images/im1.jpg');
 
 prefix = "results/hog_gab_SVM_im";
 suffix = ".jpg";
 
-for iNumber = 1:4
+for iNumber = 1:5
     fprintf("Starting image number %d\n", iNumber);
     figure(iNumber);
     thisImg = cell2mat(images(iNumber));

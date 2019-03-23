@@ -5,8 +5,7 @@ addpath('functions/SVM-KM');
 addpath('images');
 addpath('functions');
 addpath('dataset');
-nDimensions = 18;
-
+nDimensions = 15;
 [trainImages,trainLabels] = loadFaceImages('face_train.cdataset',1);
 [eigenVectors, eigenvalues, meanX, TrainPCA] = PrincipalComponentAnalysis(trainImages, nDimensions);
 reducedDimensionalitySVMModel = SVMTraining(TrainPCA, trainLabels);
