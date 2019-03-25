@@ -7,12 +7,18 @@ function [images,labels] = convertImage(filename,thisLabel,images,labels)
 % training images and, therefore, improve performance
 augmented=1;
 
+% Flag enabling contrast enhancement
+enhance=1;
+
 I=imread(filename);
 if size(I,3)>1
     I=rgb2gray(I);
 end
 vector = reshape(I,1, size(I, 1) * size(I, 2));
 vector = double(vector); % / 255;   
+if enhance
+    vector = enhanceContrast(vector);
+end
 images= [images; vector];
 labels = [labels; thisLabel];
 

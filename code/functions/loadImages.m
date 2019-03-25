@@ -19,22 +19,22 @@ else
     if (split>100||split<0)
         split=60;
     end
-    faces = dir('code/images/face/*.png');
+    faces = dir('images/face/*.png');
     faces = {faces.name}';
-    nonFaces = dir('code/images/non-face/*.png');
+    nonFaces = dir('images/non-face/*.png');
     nonFaces = {nonFaces.name}';
     posTrain = round((split/100)*numel(faces));
     negTrain = round((split/100)*numel(nonFaces));
     
     for im=1:sampling:posTrain
         filename = cell2mat(faces(im));
-        filename = sprintf('code/images/face/%s',filename);
+        filename = sprintf('images/face/%s',filename);
         [trainImages, trainLabels] = convertImage(filename,1,trainImages, trainLabels);
     end
     
     for im=1:sampling:negTrain
         filename = cell2mat(nonFaces(im));
-        filename = sprintf('code/images/non-face/%s',filename);
+        filename = sprintf('images/non-face/%s',filename);
         [trainImages, trainLabels] = convertImage(filename,-1,trainImages, trainLabels);
     end
 
@@ -45,13 +45,13 @@ else
     
     for im=posTrain+1:sampling:numel(faces)
         filename = cell2mat(faces(im));
-        filename = sprintf('code/images/face/%s',filename);
+        filename = sprintf('images/face/%s',filename);
         [testImages, testLabels] = convertImage(filename,1,testImages, testLabels);
     end
     
     for im=negTrain+1:sampling:numel(nonFaces)
         filename = cell2mat(nonFaces(im));
-        filename = sprintf('code/images/non-face/%s',filename);
+        filename = sprintf('images/non-face/%s',filename);
         [testImages, testLabels] = convertImage(filename,-1,testImages, testLabels);
     end
 end
