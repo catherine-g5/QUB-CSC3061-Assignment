@@ -8,13 +8,12 @@ addpath('functions');
 addpath('dataset');
 sampling=1;
 kValue = [1, 3, 5, 10];
-[trainImages, trainLabels] = loadFaceImages('face_train.cdataset',sampling);
+[trainImages,trainLabels,testImages,testLabels] = loadImages(0,sampling);
 trainHOG = getHOG(trainImages);
 NNmodel = KNNTraining(trainHOG, trainLabels);
 fprintf('Training done\n');
 
 %% Testing
-[testImages, testLabels] = loadFaceImages('face_test.cdataset',sampling);
 testHOG = getHOG(testImages);
 numberOfImages = size(testHOG,1);
 results = zeros(numberOfImages,1);

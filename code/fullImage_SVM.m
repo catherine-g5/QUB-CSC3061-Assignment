@@ -10,14 +10,12 @@ addpath('dataset');
 %% training
 
 % Load the training images & labels
-[images,labels] = loadFaceImages('face_train.cdataset',1);
+[trainImages,trainLabels,testImages,testLabels] = loadImages(0,1);
 
 % Train the SVM model
 fullImageSVMModel = SVMTraining(images, labels);
 
 %% testing
-
-[images,labels] = loadFaceImages('face_test.cdataset',1);
 
 % Classify each testing image using the trained model
 

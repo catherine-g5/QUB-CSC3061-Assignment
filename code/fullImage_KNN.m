@@ -7,10 +7,8 @@ addpath('functions');
 addpath('dataset');
 kValue = [1, 3, 5, 10];
 
-[trainImages,trainLabels] = loadFaceImages('face_train.cdataset',1);
+[trainImages,trainLabels,testImages,testLabels] = loadImages(0,1);
 modelNN = KNNTraining(trainImages, trainLabels);
-
-[testImages,testLabels] = loadFaceImages('face_test.cdataset',1);
 
 for k = 1:numel(kValue)
     results = zeros(size(testImages,1),1);
