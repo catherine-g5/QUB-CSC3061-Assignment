@@ -10,6 +10,8 @@ end
 % training images and, therefore, improve performance
 augmented=1;
 
+% Flag enabling contrast enhancement
+enhance=1;
 
 fp = fopen(filename, 'rb');
 assert(fp ~= -1, ['Could not open ', filename, '']);
@@ -35,7 +37,9 @@ for im=1:sampling:numberOfImages
    end
     vector = reshape(I,1, size(I, 1) * size(I, 2));
     vector = double(vector); % / 255;
-    
+    if enhance
+        vector = enhanceContrast(vector);
+    end
     images= [images; vector];
     
     if augmented

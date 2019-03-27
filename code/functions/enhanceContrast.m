@@ -11,7 +11,7 @@ m = 255/(max(Iin)-min(Iin));
 c = -m * min(Iin);
 LUT=[];
 
-if enhancementType=1
+if enhancementType==1
     for i=0:255
         if i<(-c/m)
             LUT(i+1)=0;
@@ -21,11 +21,11 @@ if enhancementType=1
             LUT(i+1) = (m*i)+c;
         end
     end
-elseif enhancementType=2
+elseif enhancementType==2
     for i=0:255
         LUT(i+1) = round((i^gamma)/(255^(gamma-1)));
     end
-elseif enhancementType=3
+elseif enhancementType==3
     np=numberOfPixels/256;
     h=hist(Iin,256);
     ch=0;
