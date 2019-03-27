@@ -7,6 +7,9 @@ function [trainImages,trainLabels,testImages,testLabels] = loadImages(split,samp
 
 %% Default datasets
 
+if (split>100||split<0)
+    split=0;
+end
 if split==0
     [trainImages,trainLabels] = loadFaceImages('face_train.cdataset',sampling);
     [testImages,testLabels] = loadFaceImages('face_test.cdataset',sampling);
@@ -16,13 +19,13 @@ else
     
     trainImages = [];
     trainLabels = [];
-    if (split>100||split<0)
-        split=60;
-    end
+    
+    %Get filenames of cropped images
     faces = dir('images/face/*.png');
     faces = {faces.name}';
     nonFaces = dir('images/non-face/*.png');
     nonFaces = {nonFaces.name}';
+    %Get index of last image for each training set 
     posTrain = round((split/100)*numel(faces));
     negTrain = round((split/100)*numel(nonFaces));
     

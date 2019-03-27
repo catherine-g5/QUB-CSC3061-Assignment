@@ -7,11 +7,13 @@ enhancementType=3; % 1=linear stretching, 2=power law, 3=hist equalisation
 gamma=1; %gamma value for power law
 
 numberOfPixels=size(Iin,2);
-m = 255/(max(Iin)-min(Iin));
-c = -m * min(Iin);
 LUT=[];
 
+%% Create lookup table for chosen method
+% i+1 used for LUT index because MATLAB starts indexing at 1
 if enhancementType==1
+    m = 255/(max(Iin)-min(Iin));
+    c = -m * min(Iin);
     for i=0:255
         if i<(-c/m)
             LUT(i+1)=0;
@@ -34,6 +36,8 @@ elseif enhancementType==3
         LUT(i+1) = max(0,round((256*ch)/numberOfPixels)-1);
     end
 end
+
+%% Get output pixel values from LUT
 
 for i=1:numberOfPixels
     O = LUT(Iin(1,i)+1);
