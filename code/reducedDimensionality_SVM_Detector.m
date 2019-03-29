@@ -23,6 +23,10 @@ for iNumber = 1:4
     fprintf("Starting image number %d\n", iNumber);
     figure(iNumber);
     thisImg = cell2mat(images(iNumber));
+    
+    % Performs contrast enhancement using matlabs adapthisteq function
+    thisImg = adapthisteq(thisImg);
+    
     imshow(thisImg); % Shows Image
 
     % Gets boundingboxes for the test image, this should indicate a face
